@@ -1,17 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="map" id="map" class="match-parent"></div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="form-popup" id="locationType">
+    
+    <form class="form-container">
+      <h1>Select Type of Location</h1>
+      
+      <button id="business" type="reset" class="location-type business">Business</button><br>
+      <button id="event" type="reset" class="location-type event">Event</button>
+    </form>
+  </div>
+
+  <div class="form-popup" id="businessType">
+    <form class="form-container">
+      <h1>New Business Request</h1>
+  
+      <label for="name"><b>Name</b></label>
+      <input type="text" name="name" required>
+
+      <label for="address"><b>Address</b></label>
+      <input type="text" name="address" required>
+
+      <label for="number"><b>Phone Number</b></label>
+      <input type="text" name="number" required>
+
+      <label for="website"><b>Website</b></label>
+      <input type="text" name="website" required>
+
+      <label for="details"><b>Additional Details</b></label>
+      <input type="text" name="details" required>
+  
+      <button id="submit1" type="reset" class="btn">Submit</button>
+      <button id="cancel1" type="reset" class="btn cancel">Cancel</button>
+    </form>    
+  </div>
+
+  <div class="form-popup" id="eventType">
+    <form class="form-container">
+      <h1>New Event Request</h1>
+  
+      <label for="name"><b>Name</b></label>
+      <input type="text" name="name" required>
+
+      <label for="location"><b>Location</b></label>
+      <input type="text" name="location" required>
+
+      <label for="date"><b>Date</b></label>
+      <input type="date" name="date" required>
+
+      <label for="time"><b>Time</b></label>
+      <input type="time" name="time" required>
+
+      <label for="details"><b>Additional Details</b></label>
+      <input type="text" name="details" required>
+  
+      <button id="submit2" type="reset" class="btn">Submit</button>
+      <button id="cancel2" type="reset" class="btn cancel">Cancel</button>
+    </form>    
+  </div>
 </ion-content>
