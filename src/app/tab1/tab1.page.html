@@ -1,20 +1,24 @@
-<ion-content [fullscreen]="true">
-  <div class="map" id="map" class="match-parent"></div>
 
-  <div class="form-popup" id="locationType">
-    
+<ion-content [fullscreen]="true">
+
+  <div style="margin-left:100px;margin-right:100px; margin-top: 100px;">
+  <h1>UC Campus Map</h1>
+  <div class="map" id="map" class="match-parent" style="height: 800px"></div>
+
+  <div class="form-popup" id="locationType" style="margin-top:100px">
+
     <form class="form-container">
       <h1>Select Type of Location</h1>
-      
+
       <button id="business" type="reset" class="location-type business">Business</button><br>
       <button id="event" type="reset" class="location-type event">Event</button>
     </form>
   </div>
-
-  <div class="form-popup" id="businessType">
+  </div>
+  <div class="form-popup" id="businessType" style="margin-top: 100px;">
     <form class="form-container">
       <h1>New Business Request</h1>
-  
+
       <label for="name"><b>Name</b></label>
       <input type="text" name="name" required>
 
@@ -29,16 +33,16 @@
 
       <label for="details"><b>Additional Details</b></label>
       <input type="text" name="details" required>
-  
+
       <button id="submit1" type="reset" class="btn">Submit</button>
       <button id="cancel1" type="reset" class="btn cancel">Cancel</button>
-    </form>    
+    </form>
   </div>
 
   <div class="form-popup" id="eventType">
     <form class="form-container">
       <h1>New Event Request</h1>
-  
+
       <label for="name"><b>Name</b></label>
       <input type="text" name="name" required>
 
@@ -53,9 +57,39 @@
 
       <label for="details"><b>Additional Details</b></label>
       <input type="text" name="details" required>
-  
+
       <button id="submit2" type="reset" class="btn">Submit</button>
       <button id="cancel2" type="reset" class="btn cancel">Cancel</button>
-    </form>    
+    </form>
   </div>
+
+
+  <h1 style="margin-left: 100px">Business Locations</h1>
+  <ion-accordion-group #accordionGroup style = "margin-right: 100px; margin-left: 100px">
+    <ion-accordion *ngFor="let business of baseBusinesses.getBaseBusinessNames(); let i = index">
+      <ion-item slot="header" color="light">
+        <ion-label><b>{{business}}</b></ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Address:</b> {{baseBusinesses.getBaseBusinessAddresses()[i]}}</ion-row>
+        <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Phone Number:</b> {{baseBusinesses.getBaseBusinessPhoneNumbers()[i]}}</ion-row>
+        <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Website: </b> {{baseBusinesses.getBaseBusinessWebsites()[i]}}</ion-row>
+        <ion-row style="margin-bottom: 10px"> <b>Hours:</b> <div [innerHTML]="baseBusinesses.getBaseBusinessHours()[i]"></div></ion-row>
+        <ion-row style="margin-bottom: 10px"> <b>Deals:</b> <div [innerHTML]="baseBusinesses.getBaseBusinessDeals()[i]"></div></ion-row>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  <h2 style="margin-left: 100px">Events</h2>
+  <ion-accordion-group #accordionGroup style = "margin-right: 100px; margin-left: 100px; margin-bottom: 200px">
+    <ion-accordion *ngFor="let event of baseEvents.getBaseEventTitles(); let i = index">
+      <ion-item slot="header" color="light">
+        <ion-label><b>{{event}}</b></ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Address:</b> {{baseEvents.getBaseEventDates()[i]}}</ion-row>
+        <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Phone Number:</b> {{baseEvents.getBaseEventTimes()[i]}}</ion-row>
+        <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Website: </b> {{baseEvents.getBaseEventLocations()[i]}}</ion-row>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>

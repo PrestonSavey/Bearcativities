@@ -10,12 +10,14 @@ import { BaseEventsComponent } from '../base-events/base-events.component';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
+
 export class Tab1Page implements OnInit {
 
   map: mapboxgl.Map;
   baseBusinesses: BaseBusinessesComponent;
   baseEvents: BaseEventsComponent;
   addLocation: AddLocationComponent;
+  numBusinesses: number = 9;
 
   constructor() {
     this.baseBusinesses = new BaseBusinessesComponent();
@@ -44,6 +46,10 @@ export class Tab1Page implements OnInit {
       document.getElementById("business")?.addEventListener("click", () => this.openBusinessForm());
       document.getElementById("event")?.addEventListener("click", () => this.openEventForm());
     });
+    this.map.once('load', () => {
+      this.map.resize();
+  });
+
   }
 
   addBaseMarkers() {
@@ -54,7 +60,7 @@ export class Tab1Page implements OnInit {
       businessMarker.setLngLat([this.baseBusinesses.getBaseBusinessLatLong()[i][1], this.baseBusinesses.getBaseBusinessLatLong()[i][0]])
       .setPopup(new mapboxgl.Popup({
         closeButton: false,
-        maxWidth: '300px' 
+        maxWidth: '300px'
       }).setHTML(
         `<head>
           <style>
@@ -106,7 +112,7 @@ export class Tab1Page implements OnInit {
       eventMarker.setLngLat([this.baseEvents.getBaseEventLatLong()[i][1], this.baseEvents.getBaseEventLatLong()[i][0]])
       .setPopup(new mapboxgl.Popup({
         closeButton: false,
-        maxWidth: '300px' 
+        maxWidth: '300px'
       }).setHTML(
         `<head>
           <style>
