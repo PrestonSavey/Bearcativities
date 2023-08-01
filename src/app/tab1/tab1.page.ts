@@ -4,7 +4,7 @@ import * as mapboxgl from 'mapbox-gl';
 import { AddLocationComponent } from '../add-location/add-location.component';
 import { BaseBusinessesComponent } from '../base-businesses/base-businesses.component';
 import { BaseEventsComponent } from '../base-events/base-events.component';
-
+import { Comment } from '../models/comments';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -18,7 +18,11 @@ export class Tab1Page implements OnInit {
   baseEvents: BaseEventsComponent;
   addLocation: AddLocationComponent;
   numBusinesses: number = 9;
-
+  comments: Comment[];
+  eventComments: Comment[];
+  currentUser: string = "testUser";
+  newComment: string = "";
+  newEventComment: string = "";
   constructor() {
     this.baseBusinesses = new BaseBusinessesComponent();
     this.baseEvents = new BaseEventsComponent();
@@ -26,6 +30,32 @@ export class Tab1Page implements OnInit {
   }
 
   ngOnInit() {
+    let comment1: Comment = {
+      user: "John",
+      comment: "Woody's is awesome"
+    }
+    let comment2: Comment = {
+      user: "Tim",
+      comment: "My girlfriend got a higher score on the punching bag. I do not recommend"
+    }
+    let comment3: Comment = {
+      user: "Rachel",
+      comment: "Are there lemon drops just lemonade?"
+    }
+    let eventComment1: Comment = {
+      user: "BearcatBoi",
+      comment: "EKU is full of scrubs"
+    }
+    let eventComment2: Comment = {
+      user: "Johnny",
+      comment: "Easy Pickins"
+    }
+    let eventComment3: Comment = {
+      user: "Rachel",
+      comment: "When is football season?"
+    }
+    this.comments = [comment1, comment2, comment3];
+    this.eventComments = [eventComment1, eventComment2, eventComment3];
     this.map = new mapboxgl.Map({
       accessToken: environment.mapbox.accessToken,
       container: 'map',
@@ -154,7 +184,20 @@ export class Tab1Page implements OnInit {
       )).addTo(this.map);
     }
   }
-
+  addNewComment(){
+    let newComment = {
+      user: this.currentUser,
+      comment: this.newComment
+    }
+    this.comments.push(newComment);
+  }
+  addNewEventComment(){
+    let newComment = {
+      user: this.currentUser,
+      comment: this.newEventComment
+    }
+    this.eventComments.push(newComment);
+  }
   openBusinessForm() {
     document.getElementById("locationType")!.style.display = "none";
 

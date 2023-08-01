@@ -76,6 +76,15 @@
         <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Website: </b> {{baseBusinesses.getBaseBusinessWebsites()[i]}}</ion-row>
         <ion-row style="margin-bottom: 10px"> <b>Hours:</b> <div [innerHTML]="baseBusinesses.getBaseBusinessHours()[i]"></div></ion-row>
         <ion-row style="margin-bottom: 10px"> <b>Deals:</b> <div [innerHTML]="baseBusinesses.getBaseBusinessDeals()[i]"></div></ion-row>
+        <ion-row style="margin-bottom: 10px"> <b>Discussion Board:</b></ion-row>
+        <div style="border: 1px solid black">
+          <ion-row *ngFor="let com of comments" style="margin-bottom: 0px; border: 1px solid lightgray; padding-top: 10px">
+          <div>{{com.user}}: {{com.comment}}</div>
+        </ion-row>
+        <ion-item><ion-input label="Post Comment:" [(ngModel)] = "newComment"></ion-input></ion-item>>
+        <ion-button type="submit" (click)="addNewComment()">Submit</ion-button>
+        </div>
+
       </div>
     </ion-accordion>
   </ion-accordion-group>
@@ -89,6 +98,13 @@
         <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Address:</b> {{baseEvents.getBaseEventDates()[i]}}</ion-row>
         <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Phone Number:</b> {{baseEvents.getBaseEventTimes()[i]}}</ion-row>
         <ion-row style="margin-bottom: 10px"> <b style="margin-right:10px">Website: </b> {{baseEvents.getBaseEventLocations()[i]}}</ion-row>
+        <div style="border: 1px solid black">
+          <ion-row *ngFor="let com of eventComments" style="margin-bottom: 0px; border: 1px solid lightgray; padding-top: 10px">
+          <div>{{com.user}}: {{com.comment}}</div>
+        </ion-row>
+        <ion-item><ion-input label="Post Comment:" [(ngModel)] = "newEventComment"></ion-input></ion-item>>
+        <ion-button type="submit" (click)="addNewEventComment()">Submit</ion-button>
+        </div>
       </div>
     </ion-accordion>
   </ion-accordion-group>
